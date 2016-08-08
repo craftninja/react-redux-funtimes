@@ -1,0 +1,12 @@
+{
+  "name": "react-redux-funtimes",
+  "version": "1.0.0",
+  "description": "### how did you make this lovely thing? (aka notes on building)",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1 -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
