@@ -80,3 +80,44 @@
   ```
 
   Feel free to also verify your decrementor.
+
+#### Rendering to the page...
+
+Now we want to put some stuff on the page so we can interact with the app instead of hardcoding in the console. We'll keep it simple here.
+
+1. Remove all your console.logs from the `scripts.js` file, along with our hardcoded `store.dispatch` invocations.
+1. We will need to wait for the document to finish loading before we read or make any changes on our document. All subsequent code will need to be inside:
+
+  ```js
+  window.onload = () => {
+
+  }
+  ```
+
+1. We want to render the state to the page, so lets write a function that will do that, and call that function.
+
+  ```js
+  const render = () => {
+    document.body.innerText = store.getState();
+  };
+
+  render();
+  ```
+
+  Now we can see our starting state of counter = 0 on the page.
+
+1. Every time we click the page, we want to increment our counter. Add an event listener to `scripts.js`:
+
+  ```js
+  document.addEventListener('click', () =>{
+    store.dispatch({ type: 'INCREMENT' });
+  });
+  ```
+
+  If you add a `console.log('counter: ', store.getState())` within that event listener, you can see we are incrementing the counter, but it isn't changing the document...
+
+1. We need to add a "change listener" to make sure that render is called any time state is changed... ([Check out the docs for `store.subscribe`](http://redux.js.org/docs/api/Store.html#subscribe))
+
+  ```js
+  store.subscribe(render);
+  ```

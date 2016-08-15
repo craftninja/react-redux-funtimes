@@ -12,10 +12,15 @@ const counter = (state = 0, action) => {
 const { createStore } = Redux;
 const store = createStore(counter);
 
-console.log(store.getState(), ' should be 0');
+window.onload = () => {
+  const render = () => {
+    document.body.innerText = store.getState();
+  };
 
-store.dispatch({ type: 'INCREMENT'})
-console.log(store.getState(), ' should be 1');
+  store.subscribe(render);
+  render();
 
-store.dispatch({ type: 'DECREMENT'})
-console.log(store.getState(), 'should be 0');
+  document.addEventListener('click', () =>{
+    store.dispatch({ type: 'INCREMENT' });
+  });
+};
